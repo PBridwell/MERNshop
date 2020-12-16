@@ -26,6 +26,27 @@ function ShoppingList(props) {
 				}}>
 				Add Item
 			</Button>
+
+			<ListGroup>
+				<TransitionGroup className='shopping-list'>
+					{items.map(({ id, name }) => (
+						<CSSTransition key={id} timeout={500} classNames='fade'>
+							<ListGroupItem>
+								<Button
+									className='remove-btn'
+									color='danger'
+									size='sm'
+									onClick={() => {
+										setItems(items.filter((item) => item.id !== id));
+									}}>
+									&times;
+								</Button>
+								{name}
+							</ListGroupItem>
+						</CSSTransition>
+					))}
+				</TransitionGroup>
+			</ListGroup>
 		</Container>
 	);
 }
